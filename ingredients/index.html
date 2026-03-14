@@ -217,18 +217,65 @@ Prakruti Prasuddhata
 
 <script>
 
-const ingredients=[
+const ingredients = [
 
-"Karakkayi","Tanikayi","Jatamasi","Satavari","Bhringaraj","Yastimadhu",
-"Marri Udalu","Nagarmotha","Henna Powder","Ashwagandha","Neeli",
-"Saribha","Bhum amlaka","Ritha","Useera","Nagakesar","Vacha",
-"Red Sandal","Stone flower","Mandara","Manjistha","Devadaru",
-"Shikakai","Black Jeera","Brahmi","Ratanjot Root","Jyotismati oil",
-"Rose hip oil","Balloon Vine","Mayur Sikha","Turmeric","Methi Seeds",
-"Flax seeds","Castor oil","Jaggery","Lemon","Pudina",
-"Beetel leaves","Curry leaves","Neem leaves","Mandukaparni",
-"Gaduchi","Ponnaganti kura","Sankapuspi","Aloe vera","Tulsi",
-"Moringa leaves","Amla Fruits","Badam oil","Gingelly oil","Coconut oil"
+{no:1, text:"Karakkayi"},
+{no:2, text:"Tanikayi"},
+{no:3, text:"Jatamasi"},
+{no:4, text:"Satavari"},
+{no:5, text:"Bhringaraj"},
+{no:6, text:"Yastimadhu"},
+{no:7, text:"Marri Udalu"},
+{no:8, text:"Nagarmotha (Tunga Mustalu)"},
+{no:9, text:"Henna Powder(Gorinta Choornam)"},
+{no:10, text:"Ashwagandha"},
+{no:11, text:"Neeli (Indigo)"},
+{no:12, text:"Saribha(Sugandhi pala)"},
+{no:13, text:"Gandha cahuralu"},
+{no:14, text:"Bhum amlaka (Nelausiri)"},
+{no:15, text:"Chengalva Kosht (Koshtam)"},
+{no:16, text:"Ritha (Kunkudi kaya churnam)"},
+{no:17, text:"Useera (Vatti Veru)(Lavancha)"},
+{no:18, text:"Manu pasupu"},
+{no:19, text:"Nagakesar"},
+{no:20, text:"Bhavanchal"},
+{no:21, text:"Vacha"},
+{no:22, text:"Red Sandal"},
+{no:23, text:"Stone flower (Chadila)"},
+{no:24, text:"Bitter Apple Root (indrayan Phal Powder)(Citrullus Colocynthis"},
+{no:25, text:"Mandara Choornam (Hibiscus Flowers Powder)"},
+{no:26, text:"Manjistha(Rubia Cardifolia)(Tamaralli)"},
+{no:27, text:"Devadaru"},
+{no:28, text:"Shikakai Choornam (acacia Cinna)"},
+{no:29, text:"Nalla Jeelakarra(Black Jeera)"},
+{no:30, text:"Brahmi powder(Bacopa Munnieri)"},
+{no:31, text:"Ratanjot Root(Onasma echioides) (Alkanet Root)  (Alkana Tinctoria)"},
+{no:32, text:"Jyotismati oil (Malkangan Taila) (Celastrus Paniculatus)   (Brahmi Karanji-Telugu)"},
+{no:33, text:"Nalla Jeelakarra(Black Jeera)"},
+{no:34, text:"Rose hip oil"},
+{no:35, text:"Balloon Vine, Budda Kakara, Kanphata/ Kapaalphoti in hindi , Mudakathan Keerai Powder Tamil (Cardiospermum halicacabum)"},
+{no:36, text:"Mayur Sikha/ mor sikha (Adiantum Caudatum)"},
+{no:37, text:"Haldi (turmeric)"},
+{no:38, text:"Methi Seeds"},
+{no:39, text:"Flax seeds"},
+{no:40, text:"Castor oil (Ricinis Cummunis)"},
+{no:41, text:"Jaggery"},
+{no:42, text:"Lemons Fresh"},
+{no:43, text:"Pudina -Green"},
+{no:44, text:"Beetel leaves - Green"},
+{no:45, text:"Curry leave- Green"},
+{no:46, text:"Neem leaves-Green"},
+{no:47, text:"Mandukaparni leaves -Green"},
+{no:48, text:"Gaduchi- Green"},
+{no:49, text:"Ponnaganti kura-Green"},
+{no:50, text:"Sankapuspi- Green"},
+{no:51, text:"Aloe vera - Green"},
+{no:52, text:"Tulsi Leaves- Green"},
+{no:53, text:"Moringa leaves - Green (Mulaga/Drum stick leaves)"},
+{no:54, text:"Amla Fruits- Green"},
+{no:55, text:"Badam oil"},
+{no:56, text:"Gingelly oil (Sesame oil)"},
+{no:57, text:"Coconut oil"}
 
 ];
 
@@ -239,23 +286,25 @@ function render(filter=""){
 
 list.innerHTML="";
 
-ingredients
-.filter(i=>i.toLowerCase().includes(filter.toLowerCase()))
-.forEach((name,i)=>{
+const filtered=ingredients.filter(i =>
+i.text.toLowerCase().includes(filter.toLowerCase())
+);
+
+filtered.forEach((item,i)=>{
 
 const div=document.createElement("div");
 
 div.className="ingredient p-3 rounded-xl flex items-center reveal";
 
-div.style.animationDelay=i*0.02+"s";
+div.style.animationDelay=(i*0.02)+"s";
 
 div.innerHTML=`
 
 <div class="w-7 h-7 mr-3 bg-yellow-50 border border-yellow-100 flex items-center justify-center rounded">
-<span class="text-[10px] font-bold text-yellow-800">${i+1}</span>
+<span class="text-[10px] font-bold text-yellow-800">${item.no}</span>
 </div>
 
-<span class="text-sm font-semibold text-slate-700">${name}</span>
+<span class="text-sm font-semibold text-slate-700">${item.text}</span>
 
 `;
 
@@ -268,28 +317,6 @@ list.appendChild(div);
 render();
 
 search.addEventListener("input",e=>render(e.target.value));
-
-
-/* share */
-
-document.getElementById("share").onclick=()=>{
-
-if(navigator.share){
-
-navigator.share({
-title:"Kesh Vardhak Ingredients",
-text:"57 Natural Ayurvedic Ingredients",
-url:window.location.href
-});
-
-}else{
-
-navigator.clipboard.writeText(window.location.href);
-alert("Link copied");
-
-}
-
-};
 
 </script>
 
